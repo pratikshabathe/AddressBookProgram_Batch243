@@ -50,9 +50,39 @@ public class Contact {
 		return contacts;
 	}
 	
-	Contact[] editContact(Contact[] contacts) {
+	Contact[] editContact(Contact[] contacts, short index) {
+		
+		Contact obj2 = new Contact();
+		obj2.getInputs();
+		contacts[index] = obj2;
+		System.out.println("contact has been updated ");
+		return contacts;
+	}
+	
+	short getIndex(Contact[] contacts, String name) {
+		short found = -1;
+		for (short i = 0; i < contacts.length; i++) {
+			if (contacts[i] != null && contacts[i].fName.equals(name)) {
+				found = i;
+				break;
+			}
+		}
+		return found;
+	}
+	
+	Contact[] deleteContact(Contact[] contacts, short index) {
+		for(short i = index ; i < contacts.length; i++) {
+			contacts[i] = contacts[i + 1];
+			if(contacts[i + 1] == null)
+				break;
+		}
+		return contacts;
+	}
+	
+	Contact[] showEditDelete(Contact[] contacts, String str) {
+		
 		if(contacts[0] == null) {
-			System.out.println("you have no contacts yet. 'add' one before you edit. \n");
+			System.out.println("you have no contacts yet. 'add' one before you  "+ str + ". \n");
 		return contacts;
 		}else {
 			System.out.print("your contacts are :");
@@ -62,34 +92,39 @@ public class Contact {
 			}
 			System.out.println();
 			
-			System.out.println("\n Enter a name to edit. mind the case ");
+			System.out.print("\n Enter a name to " + str + " mind the case ");
 			String name = sc.nextLine();
 			
-			short index = checkContact(contacts, name);
+			short index = getIndex(contacts, name);
 			
-			if(index == -1) System.out.println("we couldn't fined" + name + ". try again ");
-			else {
-				System.out.println("\n* " + name + "is beging edited *");
-				Contact obj2 = new Contact();
-				obj2.getInputs();
-		        contacts[index] = obj2;
+			if(index == -1) {
+				System.out.println("we couldn't find" + name + ". try again ");
+			}else {
+				switch (str) {
+				
+				case "edit" :
+					System.out.println("\n* " + name + " is being edited *");
+					contacts = editContact(contacts, index);
+					break;
+					
+				case "delete":
+					contacts = deleteContact(contacts, index);
+					System.out.println("contact " + name + "has been deleted");
+					break;
+					
+				case "show":
+					showDetails(contacts, index);
+					break;
+					
+				default :
+					break;
+				}
+			}
+			return contacts;
+		}
+	}
 
-		        System.out.println("contact has been updated.");
-		      }
-
-		      return contacts;
-		    }
-		  }
-
-		  short checkContact(Contact[] contacts, String name) {
-		    short found = -1;
-		    for (short i = 0; i < contacts.length; i++) {
-		      if (contacts[i] != null && contacts[i].fName.equals(name)) {
-		        found = i;
-		        break;
-		      }
-		    }
-
-		    return found;
+		void showDetails(Contact[] obj, short i) {
+			  System.out.println("Name: " +obj[i].fName + " " + obj[i].lName + "\nAddress: " + obj[i].address + "\nCity: " + "\t\tState: " + obj[i].state + "\t\tZip: " + obj[i].zip + "\nEmail: " + obj[i].email + "\t\tPhone number: " + obj.length + "\n" );
 		  }
 }

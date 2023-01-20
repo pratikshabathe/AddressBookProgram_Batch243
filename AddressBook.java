@@ -14,7 +14,7 @@ public class AddressBook {
  
 		while(!choice.equals("quit")) {
 
-			System.out.println("\n1.add \n2. edit \n3. quit \nEnter your choice : ");
+			System.out.println("\n1.add \n2. edit \n3. delete \n4. show \n5. quit \nEnter your choice : ");
 			choice = sc.next();
  
 			switch (choice) {
@@ -30,11 +30,23 @@ public class AddressBook {
 			case "edit":
 			case "2" :
 				obj = new Contact();
-				contacts = obj.editContact(contacts);
+				contacts = obj.showEditDelete(contacts, "edit");
+				break;
+				
+			case "delete":
+			case "3" :
+				obj = new Contact();
+				contacts = obj.showEditDelete(contacts, "delete");
+				break;
+				
+			case "show":
+			case "4" :
+				obj = new Contact();
+				contacts = obj.showEditDelete(contacts, "show");
 				break;
 				
 			case "quit":
-			case "3":
+			case "5":
 				choice = "quit";
 				break;
 
