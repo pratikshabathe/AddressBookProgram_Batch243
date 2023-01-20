@@ -7,28 +7,34 @@ public class AddressBook {
 	public static void main(String[] args) {
 
 		System.out.println("--Welcom to address book program--");
-		Scanner scanner = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		Contact[] contacts = new Contact[25];
 		String choice = "add";
-		choice = scanner.next();
+		choice = sc.next();
  
 		while(!choice.equals("quit")) {
 
-			System.out.println("\n1.add \n2. quit \nEnter your choice : ");
-			choice = scanner.next();
+			System.out.println("\n1.add \n2. edit \n3. quit \nEnter your choice : ");
+			choice = sc.next();
  
 			switch (choice) {
 			case "add" :
 			case "1":
 				Contact obj = new Contact();
 				obj.getInputs();
-				System.out.println("What was entered :" +obj.fName + " "  +obj.lName + " " + obj.address +" " + obj.city+ " " +obj.state +" " +obj.email +" " +obj.zip + " " +obj.phNum);
+				System.out.println("Here's What been added :" +obj.fName + " "  +obj.lName + " " + obj.address +" " + obj.city+ " " +obj.state +" " +obj.email +" " +obj.zip + " " +obj.phNum);
  
 				contacts = obj.addContact(contacts, obj);
 				break;
-
+			
+			case "edit":
+			case "2" :
+				obj = new Contact();
+				contacts = obj.editContact(contacts);
+				break;
+				
 			case "quit":
-			case "2":
+			case "3":
 				choice = "quit";
 				break;
 
