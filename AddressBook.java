@@ -1,5 +1,7 @@
 package com.bridgelabz.address_book;
 
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AddressBook {
@@ -8,7 +10,8 @@ public class AddressBook {
 
 		System.out.println("--Welcom to address book program--");
 		Scanner sc = new Scanner(System.in);
-		Contact[] contacts = new Contact[25];
+		
+		ArrayList<Contact> contacts = new ArrayList<>();
 		String choice = "add";
 		choice = sc.next();
  
@@ -21,28 +24,32 @@ public class AddressBook {
 			case "add" :
 			case "1":
 				Contact obj = new Contact();
+				try {
 				obj.getInputs();
 				System.out.println("Here's What been added :" +obj.fName + " "  +obj.lName + " " + obj.address +" " + obj.city+ " " +obj.state +" " +obj.email +" " +obj.zip + " " +obj.phNum);
  
-				contacts = obj.addContact(contacts, obj);
+				obj.addContact(contacts, obj);
+				}catch (InputMismatchException e) {
+					System.out.println("Enter a numeric value for zip code and phone number next time.");
+				}
 				break;
 			
 			case "edit":
 			case "2" :
 				obj = new Contact();
-				contacts = obj.showEditDelete(contacts, "edit");
+				obj.showEditDelete(contacts, "edit");
 				break;
 				
 			case "delete":
 			case "3" :
 				obj = new Contact();
-				contacts = obj.showEditDelete(contacts, "delete");
+				obj.showEditDelete(contacts, "delete");
 				break;
 				
 			case "show":
 			case "4" :
 				obj = new Contact();
-				contacts = obj.showEditDelete(contacts, "show");
+				obj.showEditDelete(contacts, "show");
 				break;
 				
 			case "quit":
