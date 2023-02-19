@@ -10,7 +10,9 @@ public class AddressBook {
 	static HashMap<String,ArrayList<Contact>> addressBookList = new HashMap<>();// create an object of hashmap
 	static ArrayList<Contact> currentAddressBook;// declare variable
 	static String currentAddressBookName;//declare variable
-
+	static HashMap<String, ArrayList<Contact>> cityContactList = new HashMap<>();
+	static HashMap<String, ArrayList<Contact>> stateContactList = new HashMap<>();
+	
 	public Contact createContact(){
 		 Contact person = new Contact();//creating object of ContactPerson class
 		 System.out.print("Enter First Name: ");
@@ -194,6 +196,70 @@ public class AddressBook {
 						 System.out.println(person);
 						 //we will get contacts whose state is same
 				 });
+				 }
+			 }
+				 
+					//Initialize city and state
+					    public void initializeCityAndStateContactList() {
+					        for (String key : addressBookList.keySet()) {
+					            for (Contact person : addressBookList.get(key)) {
+					                String city = person.getCity();
+					                if (cityContactList.containsKey(city)) {
+					                    cityContactList.get(city).add(person);
+					                } else {
+					                    ArrayList<Contact> list = new ArrayList<>();
+					                    list.add(person);
+					                    cityContactList.put(city, list);
+					                }
+
+					                String state = person.getState();
+					                if (stateContactList.containsKey(state)) {
+					                    stateContactList.get(state).add(person);
+					                } else {
+					                    ArrayList<Contact> list = new ArrayList<>();
+					                    list.add(person);
+					                    stateContactList.put(state, list);
+					                }
+					            }
+					        }
+					    }
+
+					    //view contacts
+					    void viewContacts() {
+					        initializeCityAndStateContactList();//calling method
+					        System.out.println("1.View by City \n2.View by State");
+					        switch (sc.nextInt()) {
+					            case 1:
+					                viewContactByCity();//calling method
+					                break;
+					            case 2:
+					                viewContactByState();//calling method
+					                break;
+					            default:
+					                viewContacts();//calling method
+					                break;
+					        }
+					    }
+	
+					    //view contact by city
+					    void viewContactByCity() {
+					        System.out.println("Enter City:");
+					        String city = sc.next();
+					        for (String key : cityContactList.keySet()) {//returns a set view of the keys contained in map
+					            if (key.equalsIgnoreCase(city)) {
+					                cityContactList.get(key).stream().forEach(person -> System.out.println(person));
+					            }
+					        }
+					    }
+
+					    //view contact by state
+					    void viewContactByState() {
+					        System.out.println("Enter State:");
+					        String state = sc.next();
+					        for (String key : stateContactList.keySet()) {//returns a set view of the keys contained in map
+					            if (key.equalsIgnoreCase(state)) {
+					                stateContactList.get(state).stream().forEach(person -> System.out.println(person));
+		       }
 		 }
 	 }
 }
