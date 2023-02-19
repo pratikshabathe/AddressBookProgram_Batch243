@@ -4,45 +4,47 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static Contact inpute(Scanner scanner) {
-		
-		System.out.println("Add details of a person");
-	    System.out.println("Please provide first name");
-	    String firstName = scanner.next();
-	    System.out.println("Please provide Last name");
-	    String lastName = scanner.next();
-	    System.out.println("Please provide address");
-	    String address = scanner.next();
-	    System.out.println("Please provide city");
-	    String city = scanner.next();
-	    System.out.println("Please provide state");
-	    String state = scanner.next();
-	    System.out.println("Please provide zip");
-	    int zip = scanner.nextInt();
-	    System.out.println("Please provide phone number");
-	    String phoneNumber = scanner.next();
-	    Contact person = new Contact(firstName, lastName, address, city, state, zip, phoneNumber);
-	    return person;
-		}
-		
-		public static void main(String[] args) {
-			    Scanner sc = new Scanner(System.in);
-			 //Adding Contacts details using Constructor of person class
-			 
-			    Contact person1 = new Contact("pranali", "sathe", "Nandura", "Buldhana", "Maharashtra", 425411, "8380867601");
-			    Contact person2 = new Contact("prathana", "kate", "Nandura", "Buldhana", "Maharashtra", 425411, "8380867602");
-			
-			 // Adding contacts to different address books by using addContact method means every single address book
-			 // has multiple contacts
-			    AddressBook addressBook = new AddressBook();
-			    addressBook.addContact(person1);
-			    addressBook.addContact(person2);
-			    System.out.println("Address book before adding new contact is: ");
-			    addressBook.printAddressBook();
-			
-			    System.out.println("Checking duplicate entry before adding new contact");
-			    addressBook.addContact(inpute(sc));
-			    addressBook.printAddressBook();
-		
-}
+	public static void main(String[] args) {
+        System.out.println("Welcome to Address Book program");//display welcome message
+        AddressBook addressBook = new AddressBook();//creating object of address book
+        Scanner sc = new Scanner(System.in);//create an object of scanner class
+
+        boolean flag1 = true;
+        while (flag1) {
+            System.out.println("addressBook.addressBookList.keySet()");
+            System.out.println("current AddressBook Name: "+addressBook.currentAddressBookName);
+            System.out.println("Select Option :\n1.Add Contact\n2.Edit Contact\n3.Delete Contact\n4.Display contact\n5.Add New Address Book\n6.Select Address Book\n7.Search contact\n8.Exit");
+            int option = sc.nextInt();
+            switch (option) { //select option
+                case 1:
+                    Contact contactPerson = addressBook.createContact();
+                    addressBook.addContact(contactPerson);
+                    break;
+                case 2:
+                    addressBook.editContact();
+                    break;
+                case 3:
+                    addressBook.deleteContact();
+                    break;
+                case 4:
+                    addressBook.displayContact(null);
+                    break;
+                case 5:
+                    addressBook.addNewAddressBook();
+                    break;
+                case 6:
+                    addressBook.selectAddressBook();
+                    break;
+                case 7:
+                    addressBook.searchContact();
+                    break;
+                case 8:
+                    flag1 = false;
+                    break;
+                default:
+                    System.out.println(option + " is not valid option");
+                    break;
+            }
+        }
+	    }
 }
