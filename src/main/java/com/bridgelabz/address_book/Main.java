@@ -27,7 +27,7 @@ public class Main {
                     addressBook.deleteContact();
                     break;
                 case 4:
-                    addressBook.displayContact(null);
+                    addressBook.viewContacts();
                     break;
                 case 5:
                     addressBook.addNewAddressBook();
@@ -36,9 +36,12 @@ public class Main {
                     addressBook.selectAddressBook();
                     break;
                 case 7:
+                	addressBook.showContactCount();
+                	break;
+                case 8:
                     addressBook.searchContact();
                     break;
-                case 8:
+                case 9:
                     flag1 = false;
                     break;
                 default:
