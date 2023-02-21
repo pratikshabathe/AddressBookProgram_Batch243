@@ -18,7 +18,6 @@ public class Main {
                 case 1:
                     Contact contactPerson = addressBook.createContact();
                     addressBook.addContact(contactPerson);
-                    break;
                 case 2:
                     addressBook.editContact();
                     break;

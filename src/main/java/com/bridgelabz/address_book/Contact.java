@@ -45,6 +45,9 @@ public class Contact {
         this.email = email;
     }
 
+    public int getZipCode() {
+        return zipCode;
+    }
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }

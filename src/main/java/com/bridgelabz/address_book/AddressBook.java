@@ -307,19 +307,41 @@ public class AddressBook {
 	 }
 		// sort contact
 		 //   sort entries in address book alphabetically by person's name
-		    void sortContact() {
-		        List<Contact> allContacts = getAllContacts();      //call method and stored in allContacts variable
-		        List<Contact> sortedContacts;
+	 void sortContact() {
+	        List<Contact> allContacts = getAllContacts();
+	        List<Contact> sortedContacts;
 
-		        System.out.println("Sort By Name : ");
-		        sortedContacts = allContacts.stream().sorted((x, y) -> x.getFirstName().compareTo(y.getFirstName())).collect(Collectors.toList());//sort by name
-		        sortedContacts.forEach(x -> System.out.println(x));
-		    }
-		    List<Contact> getAllContacts() {
-		        List<Contact> allContacts = new ArrayList<>();    //create object of list
-		        for (String key : addressBookList.keySet()) {    //iterate loop
-		            allContacts.addAll(addressBookList.get(key));
-		        }
-		        return allContacts;
-		    }
+	        System.out.println("1.Sort By Name \n2.Sort By City \n3.Sort By State \n4.Sort By Zipcode \n5.back");
+	        switch (sc.nextInt()) {
+	            case 1:
+	                sortedContacts = allContacts.stream().sorted((x, y) -> x.getFirstName().compareTo(y.getFirstName())).collect(Collectors.toList());
+	                sortedContacts.forEach(x -> System.out.println(x));
+	                break;
+	            case 2:
+	                sortedContacts = allContacts.stream().sorted((x, y) -> x.getCity().compareTo(y.getCity())).collect(Collectors.toList());
+	                sortedContacts.forEach(x -> System.out.println(x));
+	                break;
+	            case 3:
+	                sortedContacts = allContacts.stream().sorted((x, y) -> x.getState().compareTo(y.getState())).collect(Collectors.toList());
+	                sortedContacts.forEach(x -> System.out.println(x));
+	                break;
+	            case 4:
+	                sortedContacts = allContacts.stream().sorted((x, y) -> Integer.compare(x.getZipCode(), y.getZipCode())).collect(Collectors.toList());
+	                sortedContacts.forEach(x -> System.out.println(x));
+	                break;
+	            case 5:
+	                break;
+	            default:
+	                sortContact();
+	                break;
+	        }
+	    }
+
+	    List<Contact> getAllContacts() {
+	        List<Contact> allContacts = new ArrayList<>();     //create object of list
+	        for (String key : addressBookList.keySet()) {     //iterate loop
+	            allContacts.addAll(addressBookList.get(key));
+	        }
+	        return allContacts;
+	    }
 }
