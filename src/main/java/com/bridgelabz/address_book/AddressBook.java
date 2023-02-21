@@ -1,8 +1,10 @@
 package com.bridgelabz.address_book;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBook {
 
@@ -303,4 +305,21 @@ public class AddressBook {
 				 break;
 		 }	
 	 }
+		// sort contact
+		 //   sort entries in address book alphabetically by person's name
+		    void sortContact() {
+		        List<Contact> allContacts = getAllContacts();      //call method and stored in allContacts variable
+		        List<Contact> sortedContacts;
+
+		        System.out.println("Sort By Name : ");
+		        sortedContacts = allContacts.stream().sorted((x, y) -> x.getFirstName().compareTo(y.getFirstName())).collect(Collectors.toList());//sort by name
+		        sortedContacts.forEach(x -> System.out.println(x));
+		    }
+		    List<Contact> getAllContacts() {
+		        List<Contact> allContacts = new ArrayList<>();    //create object of list
+		        for (String key : addressBookList.keySet()) {    //iterate loop
+		            allContacts.addAll(addressBookList.get(key));
+		        }
+		        return allContacts;
+		    }
 }

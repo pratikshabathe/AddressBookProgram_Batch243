@@ -63,4 +63,8 @@ public class Contact {
                 ", phoneNumber=" + phoneNumber +
                 '}';
 	  }
+    public int compareTo(Object c) {
+    	Contact person = (Contact) c;
+    	return this.getFirstName().compareTo(person.getFirstName());
+    }
 }
