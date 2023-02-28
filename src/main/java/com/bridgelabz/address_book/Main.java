@@ -12,7 +12,7 @@ public class Main {
         while (flag1) {
             System.out.println("addressBook.addressBookList.keySet()");
             System.out.println("current AddressBook Name: "+addressBook.currentAddressBookName);
-            System.out.println("Select Option :\n1.Add Contact\n2.Edit Contact\n3.Delete Contact\n4.Display contact\n5.Add New Address Book\n6.Select Address Book\n7.Search contact\n8.show contact count \n9. sort contact \n10.Exit");
+            System.out.println("Select Option :\n1.Add Contact\n2.Edit Contact\n3.Delete Contact\n4.Display contact\n5.Add New Address Book\n6.Select Address Book\n7.Search contact\n8.show contact count \n9. sort contact \n10.Write data \n11. Read data \n12.Exit");
             int option = sc.nextInt();
             switch (option) { //select option
                 case 1:
@@ -43,6 +43,12 @@ public class Main {
                     addressBook.sortContact();
                     break;
                 case 10:
+                	addressBook.writeData();
+                	break;
+                case 11:
+                	addressBook.readData();
+                	break;
+                case 12:
                     flag1 = false;
                     break;
                 default:
@@ -50,5 +56,5 @@ public class Main {
                     break;
             }
         }
-	    }
+	}
 }

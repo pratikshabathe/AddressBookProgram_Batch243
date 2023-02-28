@@ -16,9 +16,9 @@ public class AddressBook {
 	static HashMap<String, ArrayList<Contact>> stateContactList = new HashMap<>();
 	
 	public Contact createContact(){
-		 Contact person = new Contact();//creating object of ContactPerson class
+		 Contact person = new Contact();       //creating object of ContactPerson class
 		 System.out.print("Enter First Name: ");
-		 person.setFirstName(sc.next());//using object reference calling setFirstName method to set first name
+		 person.setFirstName(sc.next());      //using object reference calling setFirstName method to set first name
 		 System.out.print("Enter Last Name: ");
 		 person.setLastName(sc.next());
 		 System.out.print("Enter Address: ");
@@ -87,7 +87,7 @@ public class AddressBook {
 	 boolean isContactFound = false;
 	 System.out.println("Enter Name to edit Contact");
 	 String name = sc.next();
-	 for (Contact contactPerson : currentAddressBook) { //iterate over the arraylist
+	 for (Contact contactPerson : currentAddressBook) { //iterate over the arrayList
 		 if (name.equalsIgnoreCase(contactPerson.getFirstName())) {
 			 isContactFound = true;
 			 System.out.print("Enter First Name :");
@@ -343,5 +343,14 @@ public class AddressBook {
 	            allContacts.addAll(addressBookList.get(key));
 	        }
 	        return allContacts;
+	    }
+	    //writeData method
+	    void writeData() {
+	    	FileIoService fileIoService = new FileIoService();  //creating an object of FileIoService class
+	    	fileIoService.writeData();           //using object reference calling writeData method
+	    }
+		void readData() {
+			FileIoService fileIoService = new FileIoService();  //creating an object of FileIoService class
+	    	fileIoService.readData();           //using object reference calling readData method
 	    }
 }
